@@ -1,4 +1,4 @@
-const SHELL='pinyin-shell-eac2a09dfc90',AUDIO='pinyin-audio-v1';
+const SHELL='pinyin-shell-5b87dd1ea684',AUDIO='pinyin-audio-v1';
 const FILES=['./','./index.html','./styles.css','./tokens.css','./app.js','./core.js','./storage.js','./media.js','./drawing.js','./pinyin-data.js','./curriculum.js','./audio-map.js','./icon.svg','./icon-192.png','./icon-512.png','./manifest.webmanifest'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(SHELL).then(c=>c.addAll(FILES))));
 self.addEventListener('activate',event=>event.waitUntil(Promise.all([caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('pinyin-shell-')&&k!==SHELL).map(k=>caches.delete(k)))),self.clients.claim()])));

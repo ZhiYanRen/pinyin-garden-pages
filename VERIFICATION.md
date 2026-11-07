@@ -21,3 +21,12 @@
 - Chromium：完整缓存 789 段音频；网络离线后重新加载、真实 MP3 播放、备份下载通过；使用浏览器的合成麦克风输入验证录制、停止和回听链接。
 - WebKit：完整缓存 789 段音频；关闭应用服务器后重新加载、真实 MP3 播放、备份下载通过。
 - WebKit 的 `setOffline(true)` 导航模拟触发测试引擎自身 internal error；已用停止本地应用服务器的方法验证实际缓存回退。已知上游问题： https://github.com/microsoft/playwright/issues/42775 。这不替代实体 iPad 的首次安装验证。
+
+## GitHub Pages 迁移验证（2026-11-07）
+
+- 本机 Git 2.53.0 与 GitHub CLI 2.86.0 已使用 ZhiYanRen 授权，凭据保存在系统钥匙串；提交使用 GitHub noreply 邮箱。
+- 私有源码仓库 `ZhiYanRen/pinyin-garden`；公开发布仓库 `ZhiYanRen/pinyin-garden-pages` 只含 dist/ 发布文件。
+- 新增 GitHub Pages 项目子路径检查后，共12项自动测试通过。
+- 首次源码 CI 测试和静态文件发布成功；GitHub Pages build and deployment 成功，HTTPS 已启用。
+- 正式网址返回 HTTP 200，免登录浏览器实际运行14组操作流程通过，覆盖练习、暂停续练、手写保存、拼音键盘、图谱、新版课目和1194/834/390px布局，无页面脚本错误。
+- manifest 和 service worker 在项目子路径正常返回。实体 iPad / Apple Pencil 验证范围仍与前述说明一致。

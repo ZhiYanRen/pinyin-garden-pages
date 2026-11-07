@@ -49,3 +49,9 @@
 ## GitHub Actions 自动发布
 
 推送私有源码仓库 main 后，CI 自动运行测试、生成缓存版本，再将 dist/ 发布至公开发布仓库的 gh-pages 分支，GitHub Pages 自动更新网站。配置与密钥范围见 DEPLOYMENT.md；后续 Agent 开发遵循 AGENTS.md，完成任务后验证、提交并推送。
+
+## iPad 与响应式布局
+
+首页直接提供今日练习、课文听写与错题入口。iPad 竖屏采用底部导航，宽屏练习采用听音与答题分栏；书写区随可用空间调整，旋转与暂停保留笔迹。弹窗支持正文滚动并适应可见窗口高度。手机使用单列，PC支持鼠标和键盘。
+
+浏览器布局验证脚本为 `tests/ipad.browser.mjs`：先运行 `npm start`，再在具有 Playwright 的开发环境运行 `node tests/ipad.browser.mjs`。可通过 `PLAYWRIGHT_MODULE` 指定现有 Playwright 模块路径、`BROWSER_EXECUTABLE` 指定浏览器、`TEST_URL` 指定验证地址、`TEST_BROWSER=webkit` 切换到已安装的 WebKit；测试工具不进入网站产物。模拟验证不代表实体 iPad、Apple Pencil 或系统键盘真机验收。

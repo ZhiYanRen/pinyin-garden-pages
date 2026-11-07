@@ -1,7 +1,7 @@
 {
   "findings": [],
   "mode": "strict",
-  "projectRoot": "/Users/yanren/Documents/Codex/2026-11-06/ipad/outputs/pinyin-garden",
+  "projectRoot": "/Users/yanren/Documents/github/pinyin-garden",
   "schemaVersion": 1,
   "summary": {
     "errors": 0,

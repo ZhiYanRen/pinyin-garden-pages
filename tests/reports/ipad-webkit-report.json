@@ -1,0 +1,111 @@
+{
+  "browser": "webkit desktop with touch emulation",
+  "physicalDevice": false,
+  "reports": [
+    {
+      "width": 1440,
+      "height": 900,
+      "passed": true,
+      "checks": [
+        "navigation",
+        "no overflow",
+        "touch size",
+        "handwriting rotation and resume",
+        "tone input",
+        "modal scroll, Escape and focus",
+        "short viewport",
+        "reduced motion"
+      ]
+    },
+    {
+      "width": 1194,
+      "height": 834,
+      "passed": true,
+      "checks": [
+        "navigation",
+        "no overflow",
+        "touch size",
+        "handwriting rotation and resume",
+        "tone input",
+        "modal scroll, Escape and focus",
+        "short viewport",
+        "reduced motion"
+      ]
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "passed": true,
+      "checks": [
+        "navigation",
+        "no overflow",
+        "touch size",
+        "handwriting rotation and resume",
+        "tone input",
+        "modal scroll, Escape and focus",
+        "short viewport",
+        "reduced motion"
+      ]
+    },
+    {
+      "width": 834,
+      "height": 1194,
+      "passed": true,
+      "checks": [
+        "navigation",
+        "no overflow",
+        "touch size",
+        "handwriting rotation and resume",
+        "tone input",
+        "modal scroll, Escape and focus",
+        "short viewport",
+        "reduced motion"
+      ]
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "passed": true,
+      "checks": [
+        "navigation",
+        "no overflow",
+        "touch size",
+        "handwriting rotation and resume",
+        "tone input",
+        "modal scroll, Escape and focus",
+        "short viewport",
+        "reduced motion"
+      ]
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "passed": true,
+      "checks": [
+        "navigation",
+        "no overflow",
+        "touch size",
+        "handwriting rotation and resume",
+        "tone input",
+        "modal scroll, Escape and focus",
+        "short viewport",
+        "reduced motion"
+      ]
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "passed": true,
+      "checks": [
+        "navigation",
+        "no overflow",
+        "touch size",
+        "handwriting rotation and resume",
+        "tone input",
+        "modal scroll, Escape and focus",
+        "short viewport",
+        "reduced motion"
+      ]
+    }
+  ]
+}

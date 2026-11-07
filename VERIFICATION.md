@@ -30,3 +30,12 @@
 - 首次源码 CI 测试和静态文件发布成功；GitHub Pages build and deployment 成功，HTTPS 已启用。
 - 正式网址返回 HTTP 200，免登录浏览器实际运行14组操作流程通过，覆盖练习、暂停续练、手写保存、拼音键盘、图谱、新版课目和1194/834/390px布局，无页面脚本错误。
 - manifest 和 service worker 在项目子路径正常返回。实体 iPad / Apple Pencil 验证范围仍与前述说明一致。
+
+## iPad 优先布局优化（2026-11-07）
+
+- 使用现有 DESIGN.md 与 UX-CONTRACT.md，依据最新 AGENTS.md 规范调整共享框架、首页、练习分栏及弹窗，保留静态 Pages 和本机数据保存。安装说明保持移除。
+- Chrome 与 WebKit 各通过7组视口流程：1440×900、1194×834、1024×768、834×1194、768×1024、390×844、844×390。报告见 tests/reports/ipad-chromium-report.json 与 ipad-webkit-report.json；复跑脚本为 tests/ipad.browser.mjs。
+- 检查导航、页面溢出、按钮尺寸、横竖屏切换笔迹保留、暂停恢复、声调输入、弹窗正文滚动、Escape与焦点恢复、短窗口与减少动态效果偏好。修正 WebKit 触控按钮未获焦点时关闭弹窗无法回到入口的问题。
+- 原有14组 Chrome 业务流程通过；789段声音完整缓存、离线重新打开及真实MP3播放、备份导出、模拟麦克风录音回听验证通过。测试数据均为本机合成数据，不进入发布目录。
+- Premium 严格静态检查零问题；npm test 共12项通过，npm run build:release 通过并更新内容缓存版本。
+- 浏览器自动化模拟与实际实体 iPad 分开：未验证 Apple Pencil 压感、防误触、iPadOS 系统软键盘、Safari 工具栏及已安装独立窗口的真机表现。短视口验证不能代替这些真机测试。

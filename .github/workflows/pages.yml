@@ -1,0 +1,42 @@
+name: Test and publish GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pinyin-pages-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+      - name: Verify learning rules and static assets
+        run: npm test
+      - name: Prepare static release and offline cache version
+        run: npm run build:release
+      - name: Publish static files to the Pages repository
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main' && vars.PAGES_DEPLOY_REPOSITORY != ''
+        uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4
+        with:
+          deploy_key: ${{ secrets.PAGES_DEPLOY_KEY }}
+          external_repository: ${{ vars.PAGES_DEPLOY_REPOSITORY }}
+          publish_branch: gh-pages
+          publish_dir: ./dist
+          enable_jekyll: false
+          keep_files: false
+          full_commit_message: 'Publish pinyin-garden from ${{ github.sha }}'

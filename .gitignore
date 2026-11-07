@@ -1,0 +1,13 @@
+node_modules/
+.DS_Store
+*.log
+
+# Local credentials, learning exports and temporary files
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.cache/
+work/
+拼音小花园-学习备份-*.json

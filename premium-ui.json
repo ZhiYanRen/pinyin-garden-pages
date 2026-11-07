@@ -1,0 +1,28 @@
+{
+  "profile": "product-admin",
+  "sourceRoots": [
+    "dist"
+  ],
+  "locale": "zh-CN",
+  "canonicalMap": "UX-CONTRACT.md",
+  "requiredCapabilities": [
+    "Select/Listbox",
+    "Form",
+    "Scrollbar",
+    "Toast",
+    "CRUD"
+  ],
+  "ownership": {
+    "Select/Listbox": "native"
+  },
+  "requiredCommands": [
+    "unit"
+  ],
+  "commands": {
+    "unit": "npm test"
+  },
+  "evidence": {
+    "crudFullFlow": "tests/core.test.mjs",
+    "failurePaths": "tests/core.test.mjs"
+  }
+}

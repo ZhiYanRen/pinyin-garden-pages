@@ -1,0 +1,3 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {speak,stopAudio} from '../dist/media.js';
+test('a stalled speech engine rejects instead of falsely reporting success',async()=>{const timer=globalThis.setTimeout;globalThis.window={speechSynthesis:{}};globalThis.speechSynthesis={cancel(){},getVoices(){return[{lang:'zh-CN'}];},speak(){}};globalThis.SpeechSynthesisUtterance=class{constructor(t){this.text=t;}};globalThis.setTimeout=(f)=>timer(f,1);try{await assert.rejects(speak('测试超时语句'),/声音/);}finally{globalThis.setTimeout=timer;stopAudio();delete globalThis.window;delete globalThis.speechSynthesis;delete globalThis.SpeechSynthesisUtterance;}});

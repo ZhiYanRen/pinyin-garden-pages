@@ -1,36 +1,27 @@
-# GitHub Pages 发布约定
+# GitHub Pages 单公开仓库发布
 
-生产运行内容均在 dist/，使用 GitHub Pages 支持的静态资源。浏览器学习记录使用 localStorage，音频使用 Cache Storage；不依赖后端数据库或生产 Node 服务。
+## 实际配置
 
-## 免费账户与私有源码
+- 唯一公开仓库：https://github.com/ZhiYanRen/pinyin-garden-pages 。包含完整源码与开发历史，主干 main。
+- 正式网址：https://zhiyanren.github.io/pinyin-garden-pages/ 。迁移保持原仓库名和网站路径。
+- Pages 来源为 GitHub Actions；工作流 `.github/workflows/pages.yml`。
+- Node.js 22.16+；本机预览 `npm start`；验证 `npm test`；正式构建 `npm run build:release`，产物为 dist/。
+- 生产只有静态资源，个人记录保存在设备浏览器；不依赖数据库或生产 Node 服务。
 
-GitHub Free 的 Pages 发布来源必须是公开仓库。保留私有源码的免费方案是：私有源码仓库负责开发和 CI，另一个公开发布仓库仅接收 dist/ 生成文件。网页中的 JavaScript 和公共题库本来就会发送到浏览器，因此不能被视为机密。
+## 自动更新
 
-两仓库方案需要：
+在 main 修改 → 运行验证与正式构建 → 只提交本任务变更 → 推送 origin/main → 检查对应 Actions 和 Pages 部署 → 验证正式网站。
 
-- 源码仓库变量 `PAGES_DEPLOY_REPOSITORY`：公开发布仓库的 `owner/repo`。
-- 源码仓库 Secret `PAGES_DEPLOY_KEY`：专用于该发布仓库的 SSH 私钥。
-- 发布仓库 Deploy Key：对应公钥，允许写入。这个密钥不授权其他仓库。
-- 发布仓库 Pages 来源：`gh-pages` 分支、根目录。
+main push 自动测试构建，通过后使用 configure-pages、upload-pages-artifact、deploy-pages 发布 dist/。PR 只验证；workflow_dispatch 可手动重试。部署使用 github-pages 环境和内置 GITHUB_TOKEN，权限 contents: read、pages: write、id-token: write。
 
-密钥只应存入 GitHub Actions Secrets，不能写进 Git、前端、文档或聊天。无需将本机 GitHub CLI 的个人令牌复制到 CI。
+不再使用第二个私有源码仓库、跨仓库发布、PAGES_DEPLOY_REPOSITORY 或 PAGES_DEPLOY_KEY。旧 gh-pages 分支仅是历史发布记录，不作为当前 Pages 来源，不手工更新。
 
-## 日常工作
+## 凭据与限制
 
-在源码目录修改 → `npm test` → `npm run build:release` → 提交本任务变更 → `git push`。
+源码已公开，不得提交个人数据、学习备份或凭据；浏览器运行资源同样公开。无需把个人 GitHub 登录令牌复制到 CI。
 
-推送 main 自动触发 `.github/workflows/pages.yml`。先验证，再发布；测试失败时不会发布。PR 运行验证但不会接触部署密钥。公开发布仓库由 CI 管理，不能直接编辑；修改会在下次发布被替换。
+本机存储不代表多设备同步，静态 JSON 不支持网页写回；需求必须服从 AGENTS.md 的静态运行边界。
 
-当前工程已采用下述两仓库方案。若迁移或重建配置，注意：`PAGES_DEPLOY_REPOSITORY` 未设置时 CI 只验证、不发布；首次发布需等待部署分支生成，再启用 Pages。以实际部署结果和正式网址检查确认发布成功。
+## 导航同步
 
-## 后续数据能力
-
-静态 JSON 只能作为版本化的公共题库，不能在运行时由网页改写。儿童记录留在设备，提供文件导入导出。若用户要云同步或共享可写数据，需要先重新讨论架构；不能在当前“仅 GitHub Pages”约定下擅自引入数据库、服务器或暴露 GitHub token。
-
-## 当前工程配置
-
-- GitHub 账号：ZhiYanRen。
-- 私有源码仓库：ZhiYanRen/pinyin-garden。
-- 公开静态发布仓库：ZhiYanRen/pinyin-garden-pages。
-- 网站地址：https://zhiyanren.github.io/pinyin-garden-pages/ 。
-- 部署密钥只拥有公开发布仓库的写入权限，不使用个人 OAuth token 执行 CI。
+本项目入口维护在相邻 app-island/public/projects.json。名称、Logo、正式网址变更时，同步导航项目、测试并在其 main 提交推送。网址必须经实际发布和访问核验，入口使用新窗口打开。

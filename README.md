@@ -2,9 +2,7 @@
 
 正式网站：https://zhiyanren.github.io/pinyin-garden-pages/
 
-私有源码：https://github.com/ZhiYanRen/pinyin-garden
-
-公开发布文件：https://github.com/ZhiYanRen/pinyin-garden-pages
+公开源码与自动发布：https://github.com/ZhiYanRen/pinyin-garden-pages
 
 
 为已会拼读、但听写容易混淆的孩子制作的网页学习应用，打开网址即可使用。
@@ -48,7 +46,7 @@
 
 ## GitHub Actions 自动发布
 
-推送私有源码仓库 main 后，CI 自动运行测试、生成缓存版本，再将 dist/ 发布至公开发布仓库的 gh-pages 分支，GitHub Pages 自动更新网站。配置与密钥范围见 DEPLOYMENT.md；后续 Agent 开发遵循 AGENTS.md，完成任务后验证、提交并推送。
+源码和发布配置统一保存在公开仓库 pinyin-garden-pages。推送 main 后，CI 自动运行测试、生成缓存版本，将 dist/ 作为 Pages artifact 部署，GitHub Pages 自动更新网站。配置与密钥范围见 DEPLOYMENT.md；后续 Agent 开发遵循 AGENTS.md，完成任务后验证、提交并推送。
 
 ## iPad 与响应式布局
 

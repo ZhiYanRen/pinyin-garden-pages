@@ -4,8 +4,7 @@
 
 - 本项目为拼音巩固学习 PWA，主要在 iPad 使用；本文件记录项目所有者的长期要求。位于多项目工作区时同时遵守父级 AGENTS.md；本文件保留独立检出所需的核心约束，不能用技能默认建议放宽它们。
 - 本地目录：`/Users/yanren/Documents/github/pinyin-garden`。
-- 私有源码仓库：https://github.com/ZhiYanRen/pinyin-garden ，远程 origin，默认分支 main。
-- 公开静态发布仓库：https://github.com/ZhiYanRen/pinyin-garden-pages 。
+- 唯一公开仓库：https://github.com/ZhiYanRen/pinyin-garden-pages ，同时保存源码与发布配置；远程 origin，主干 main。
 - 正式网站：https://zhiyanren.github.io/pinyin-garden-pages/ 。访问不要求 ChatGPT、Sites 或 GitHub 登录。
 
 ## 2. 静态技术与数据边界
@@ -93,11 +92,18 @@ git diff --check
 
 涉及输入、资源、离线、部署或布局时，增加对应的针对性验证。执行后检查生成文件，仅提交本任务应版本管理的变更，dist/ 当前已被源码仓库跟踪，按既有构建流程管理；不手工编辑生成文件，不顺带提交与本任务无关的产物变更。README.md、.gitignore 和 DEPLOYMENT.md 按实际变化维护；纯规范修改不代表已完成界面改造或真机验收。
 
-## 7. GitHub Pages 自动发布
+## 7. 单公开仓库与 GitHub Pages 自动发布
 
-- 工作流：`.github/workflows/pages.yml`；main 的 push 自动运行测试和正式构建，并支持 workflow_dispatch。PR 只验证，不接触发布密钥或执行正式部署。
-- 构建命令：`npm run build:release`，静态产物目录：`dist/`；工作流使用 Node.js 22，具体版本以仓库配置为准。
-- 源码仓库变量 `PAGES_DEPLOY_REPOSITORY` 指向 `ZhiYanRen/pinyin-garden-pages`；Secret `PAGES_DEPLOY_KEY` 保存仅对此发布仓库有写权限的 SSH 私钥，对应公钥配置为发布仓库可写 Deploy Key。
-- 验证与构建通过后，仅同步 dist/ 至发布仓库 gh-pages 分支；Pages 来源为该分支根目录。发布文件由 CI 管理，不手工修改；不得使用个人 OAuth token 代替专用部署密钥。
-- 推送后检查对应提交的 Actions 结果及发布仓库 Pages 结果；网站更新验收检查正式地址、资源路径、缓存与适用的离线体验。CI 成功但未配置发布变量时不代表完成部署。
-- 失败先查看 Actions 日志定位问题，修复后推送或通过 workflow_dispatch 重试；不通过关闭测试、扩大密钥权限或修改可见性绕过错误。更多说明见 [DEPLOYMENT.md](DEPLOYMENT.md)。
+- 唯一仓库 `ZhiYanRen/pinyin-garden-pages` 同时保存源码、历史及部署配置；正式网址保持 https://zhiyanren.github.io/pinyin-garden-pages/ 。未来不恢复双仓库或私有源码方案。
+- 工作流 `.github/workflows/pages.yml`：main push 自动运行 `npm test` 与 `npm run build:release`，从 dist/ 上传 Pages artifact 后部署至 github-pages；支持 workflow_dispatch。PR 只验证，不部署。
+- Pages 来源为 GitHub Actions，使用内置 GITHUB_TOKEN；权限 contents: read、pages: write、id-token: write。不再依赖 PAGES_DEPLOY_REPOSITORY、PAGES_DEPLOY_KEY 或跨仓库 Deploy Key。
+- 本机及 CI 使用 Node.js 22.16+（CI Node 22）；失败查看对应 Actions 日志，修复后推送或手动重试，不关闭验证绕过失败。
+- 推送后核对远程提交与 Pages 结果，必要时检查线上资源、内容缓存和离线体验；源码推送、构建成功、发布成功、真机验证是不同状态，不得混淆。详情见 [DEPLOYMENT.md](DEPLOYMENT.md)。
+
+## 8. 导航项目自动登记与发布后同步
+
+- 工作区统一导航项目为 `app-island/`（应用岛），公开仓库 `ZhiYanRen/app-island`。目录唯一数据源为 `app-island/public/projects.json`，使用项目真实名称、Logo、简要介绍及 Pages 正式访问地址，所有已发布入口使用 target="_blank"、rel="noopener noreferrer" 打开新窗口／标签页。
+- 每次新建子项目，默认先登记目录：唯一 id、名称、简述、分类、复制到导航项目的 Logo，状态 pending、url 为 null。未正式发布的项目可展示“准备中”，不能写入推测网址、仓库地址、本机地址或启用入口。
+- 新项目 Pages 部署成功、拿到并访问验证实际正式网址后，通过导航项目登记脚本更新为 published 并写入该网址；验证图标与新窗口打开行为，再在导航项目 main 提交推送、跟进部署。新项目的上线交付必须包含导航同步结果，未成功同步则明确报告。
+- 已有项目改名、更换 Logo、变更正式网址或停用时，同步更新目录和本地 Logo；不把凭据或私有业务信息写入公共目录。导航自身也登记，正式发布后才启用自己的入口。
+- 每个子项目 AGENTS.md 必须包含这项登记和发布后同步责任。优先使用 `node app-island/scripts/register-project.mjs --help` 查看命令，在不覆盖其他未完成修改的前提下维护；目录更新不需要浏览器访问 GitHub API 或运行服务端。

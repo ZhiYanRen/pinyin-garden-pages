@@ -25,7 +25,7 @@
 ## GitHub Pages 迁移验证（2026-11-07）
 
 - 本机 Git 2.53.0 与 GitHub CLI 2.86.0 已使用 ZhiYanRen 授权，凭据保存在系统钥匙串；提交使用 GitHub noreply 邮箱。
-- 私有源码仓库 `ZhiYanRen/pinyin-garden`；公开发布仓库 `ZhiYanRen/pinyin-garden-pages` 只含 dist/ 发布文件。
+- 当前统一使用公开仓库 `ZhiYanRen/pinyin-garden-pages`，main 保存源码与工作流，GitHub Actions 部署 dist/；保留原正式网址。
 - 新增 GitHub Pages 项目子路径检查后，共12项自动测试通过。
 - 首次源码 CI 测试和静态文件发布成功；GitHub Pages build and deployment 成功，HTTPS 已启用。
 - 正式网址返回 HTTP 200，免登录浏览器实际运行14组操作流程通过，覆盖练习、暂停续练、手写保存、拼音键盘、图谱、新版课目和1194/834/390px布局，无页面脚本错误。

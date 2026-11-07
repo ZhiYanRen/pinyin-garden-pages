@@ -102,7 +102,7 @@ git diff --check
 
 ## 8. 导航项目自动登记与发布后同步
 
-- 工作区统一导航项目为 `app-island/`（应用岛），公开仓库 `ZhiYanRen/app-island`。目录唯一数据源为 `app-island/public/projects.json`，使用项目真实名称、Logo、简要介绍及 Pages 正式访问地址，所有已发布入口使用 target="_blank"、rel="noopener noreferrer" 打开新窗口／标签页。
+- 工作区统一导航项目为 `app-island/`（应用岛），公开仓库 `ZhiYanRen/app-island`，正式网站 https://zhiyanren.github.io/app-island/ 。目录唯一数据源为 `app-island/public/projects.json`，使用项目真实名称、Logo、简要介绍及 Pages 正式访问地址，所有已发布入口使用 target="_blank"、rel="noopener noreferrer" 打开新窗口／标签页。
 - 每次新建子项目，默认先登记目录：唯一 id、名称、简述、分类、复制到导航项目的 Logo，状态 pending、url 为 null。未正式发布的项目可展示“准备中”，不能写入推测网址、仓库地址、本机地址或启用入口。
 - 新项目 Pages 部署成功、拿到并访问验证实际正式网址后，通过导航项目登记脚本更新为 published 并写入该网址；验证图标与新窗口打开行为，再在导航项目 main 提交推送、跟进部署。新项目的上线交付必须包含导航同步结果，未成功同步则明确报告。
 - 已有项目改名、更换 Logo、变更正式网址或停用时，同步更新目录和本地 Logo；不把凭据或私有业务信息写入公共目录。导航自身也登记，正式发布后才启用自己的入口。

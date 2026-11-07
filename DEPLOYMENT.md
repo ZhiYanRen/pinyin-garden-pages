@@ -25,3 +25,7 @@ main push 自动测试构建，通过后使用 configure-pages、upload-pages-ar
 ## 导航同步
 
 本项目入口维护在相邻 app-island/public/projects.json。名称、Logo、正式网址变更时，同步导航项目、测试并在其 main 提交推送。网址必须经实际发布和访问核验，入口使用新窗口打开。
+
+## 2026-11-07 迁移验收
+
+完整开发历史已迁入本公开仓库 main，本地 origin 已更新。新工作流构建和部署成功，原网址已通过7组视口的线上浏览器流程检查（Chrome触控模拟，非实体 iPad）。原私有仓库 ZhiYanRen/pinyin-garden 已删除，旧跨仓库 Deploy Key 已撤销。新的导航入口为 https://zhiyanren.github.io/app-island/ 。

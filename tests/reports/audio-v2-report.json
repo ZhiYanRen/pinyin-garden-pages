@@ -1,0 +1,55 @@
+{
+  "clips": 789,
+  "allReferencedAudioExists": true,
+  "samples": [
+    {
+      "word": "妈",
+      "oldDuration": 0.481958,
+      "newDuration": 1.036125,
+      "oldRecommended": 0.5355088888888889,
+      "newRecommended": 1.3815
+    },
+    {
+      "word": "麻",
+      "oldDuration": 0.468542,
+      "newDuration": 1.013042,
+      "oldRecommended": 0.5206022222222222,
+      "newRecommended": 1.3507226666666667
+    },
+    {
+      "word": "马",
+      "oldDuration": 0.468583,
+      "newDuration": 1.013042,
+      "oldRecommended": 0.5206477777777778,
+      "newRecommended": 1.3507226666666667
+    },
+    {
+      "word": "骂",
+      "oldDuration": 0.468417,
+      "newDuration": 1.012792,
+      "oldRecommended": 0.5204633333333333,
+      "newRecommended": 1.3503893333333332
+    },
+    {
+      "word": "波",
+      "oldDuration": 0.43025,
+      "newDuration": 0.972792,
+      "oldRecommended": 0.47805555555555557,
+      "newRecommended": 1.297056
+    },
+    {
+      "word": "坡",
+      "oldDuration": 0.4905,
+      "newDuration": 1.034417,
+      "oldRecommended": 0.5449999999999999,
+      "newRecommended": 1.3792226666666665
+    },
+    {
+      "word": "你好，我们一起练习拼音。",
+      "oldDuration": 2.734708,
+      "newDuration": 3.499833,
+      "oldRecommended": 3.0385644444444444,
+      "newRecommended": 4.666444
+    }
+  ]
+}

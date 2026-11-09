@@ -1,0 +1,15 @@
+{
+  "engine": "webkit",
+  "passed": true,
+  "physicalDevice": false,
+  "checks": [
+    "two isolated tone sounds play in order",
+    "demo cancels when leaving; confirmed textbook edition visible",
+    "textbook-only versus explicitly marked supplementary words",
+    "cannot submit without listening",
+    "real slow playback unlocks typed submission; tone error feedback",
+    "daily set mixes listening and independent spelling with hidden answers",
+    "audio failure leaves answer gated and gives retry guidance"
+  ],
+  "errors": []
+}

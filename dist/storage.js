@@ -1,11 +1,13 @@
 import {validateBackup} from './core.js';
+import {DEFAULT_RATE} from './audio-settings.js';
 export const KEY='pinyin-garden-v1';
-export function fresh(){return {version:1,history:[],mistakes:{},settings:{rate:0.9,mode:'write',count:10},session:null,book:'g2a',unit:1,updated:0};}
+export function fresh(){return {version:1,audioProfile:2,includeSupplements:false,history:[],mistakes:{},settings:{rate:DEFAULT_RATE,mode:'write',count:10},session:null,book:'g2a',unit:1,updated:0};}
 export function load(){
  try{const raw=localStorage.getItem(KEY);if(!raw)return {state:fresh()};const o=JSON.parse(raw);const clean=validateBackup(o);
+ if(o.audioProfile!==2)clean.settings.rate=Math.min(clean.settings.rate,DEFAULT_RATE);
  let session=null;
- if(o.session&&Array.isArray(o.session.items)&&o.session.items.length<=1000&&Number.isInteger(o.session.index)&&o.session.index>=0&&o.session.index<=o.session.items.length&&Array.isArray(o.session.results)) session=o.session;
- return {state:{...fresh(),...clean,session,book:typeof o.book==='string'?o.book:'g2a',unit:Number.isInteger(o.unit)?o.unit:1,updated:o.updated||0}};
+ if(o.session&&Array.isArray(o.session.items)&&o.session.items.length<=1000&&Number.isInteger(o.session.index)&&o.session.index>=0&&o.session.index<=o.session.items.length&&Array.isArray(o.session.results)) session={...o.session,heard:o.audioProfile===2?!!o.session.heard:false};
+ return {state:{...fresh(),...clean,audioProfile:2,includeSupplements:o.includeSupplements===true,session,book:typeof o.book==='string'?o.book:'g2a',unit:Number.isInteger(o.unit)?o.unit:1,updated:o.updated||0}};
  }catch{return {state:fresh(),error:'学习记录暂时读不出来。请先导出或保留原备份；本次可以继续练习。'};}
 }
 export function save(state){try{state.updated=Date.now();localStorage.setItem(KEY,JSON.stringify(state));return true;}catch{return false;}}

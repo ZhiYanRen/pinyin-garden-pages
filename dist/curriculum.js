@@ -39,8 +39,8 @@ function unit(book, number, title, lessons, garden) {
 
 export const curriculum = [
   {
-    id: 'g2a', title: '二年级上册', edition: '统编语文 · 人民教育出版社 · 根据2022年版课程标准修订',
-    verified: '2026-11-06', sourceUpdated: official.g2a.updated, sourceUrl: bookUrl('g2a'),
+    id: 'g2a', title: '二年级上册', edition: '人教统编语文 · 2024年审核通过 · 根据2022年版课程标准修订',
+    verified: '2026-11-09', sourceUpdated: official.g2a.updated, sourceUrl: bookUrl('g2a'),
     note: '已核对官方现行电子教材的27个课目和236个词语表词。另含古诗组词、少量补充词与8组园地原创复习；补充词逐词标记。学校具体听写要求以老师安排为准。',
     units: [
       unit('g2a', 1, '第一单元 · 阅读', [

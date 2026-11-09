@@ -1,5 +1,5 @@
-const SHELL='pinyin-shell-5b87dd1ea684',AUDIO='pinyin-audio-v1';
-const FILES=['./','./index.html','./styles.css','./tokens.css','./app.js','./core.js','./storage.js','./media.js','./drawing.js','./pinyin-data.js','./curriculum.js','./audio-map.js','./icon.svg','./icon-192.png','./icon-512.png','./manifest.webmanifest'];
+const SHELL='pinyin-shell-e69688d78c12',AUDIO='pinyin-audio-v2';
+const FILES=['./','./index.html','./styles.css','./tokens.css','./app.js','./core.js','./learning.js','./audio-settings.js','./storage.js','./media.js','./drawing.js','./pinyin-data.js','./curriculum.js','./audio-map.js','./icon.svg','./icon-192.png','./icon-512.png','./manifest.webmanifest'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(SHELL).then(c=>c.addAll(FILES))));
 self.addEventListener('activate',event=>event.waitUntil(Promise.all([caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('pinyin-shell-')&&k!==SHELL).map(k=>caches.delete(k)))),self.clients.claim()])));
 self.addEventListener('fetch',event=>{const url=new URL(event.request.url),base=new URL(self.registration.scope);if(event.request.method!=='GET'||url.origin!==base.origin)return;

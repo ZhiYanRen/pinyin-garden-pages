@@ -1,0 +1,12 @@
+{
+  "engine": "webkit",
+  "passed": true,
+  "method": "Stop local HTTP server after full precache; navigator online flag stays true",
+  "emulatedOfflineFlagReload": "WebKit internal error; old document retained",
+  "physicalDevice": false,
+  "checks": [
+    "server unreachable",
+    "new document loaded from service worker",
+    "real cached MP3 playback"
+  ]
+}

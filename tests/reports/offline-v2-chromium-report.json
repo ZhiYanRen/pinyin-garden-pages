@@ -1,0 +1,13 @@
+{
+  "engine": "chromium",
+  "clips": 789,
+  "passed": true,
+  "checks": [
+    "new pack complete",
+    "old pack removed after complete",
+    "offline reload",
+    "real slow MP3 playback",
+    "answer after successful playback"
+  ],
+  "errors": []
+}

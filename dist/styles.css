@@ -48,3 +48,7 @@ dialog[open]{display:flex;flex-direction:column}.dialog-body{min-height:0;oversc
  .practice-header>span.text-small{order:3;flex-basis:100%}.practice-header{gap:6px}.canvas-wrap{height:240px}
 }
 @media(hover:none){.card.link:hover{transform:none}.btn.small,.writing-tools button{min-height:48px}}
+.tone-lab{padding:24px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+.tone-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.tone-card{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 6px;background:var(--background);border:1px solid var(--line);border-radius:14px;transition:transform .15s,background .15s}.tone-card:active{background:var(--mint);transform:scale(.97)}.tone-card .py{font-size:30px}.tone-shape{font-size:30px;line-height:1.2;color:var(--primary)}.tone-card>span:last-child{font-size:14px}.tone-status{min-height:54px;margin-top:12px}.tone-lab h2{font-size:21px}
+@media(max-width:599px){.tone-lab{padding:16px}.tone-grid{gap:8px}.tone-card .py{font-size:25px}.tone-card>span:last-child{font-size:12px}.tone-lab>.row>.btn{width:100%}}
+@media(prefers-reduced-motion:reduce){.tone-card{transition:none}}

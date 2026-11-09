@@ -1,3 +1,4 @@
+import {DEFAULT_RATE,SPEECH_RATES} from './audio-settings.js';
 const tones={a:'āáǎà',e:'ēéěè',i:'īíǐì',o:'ōóǒò',u:'ūúǔù',ü:'ǖǘǚǜ'};
 export function normalizePinyin(input){
  return String(input).normalize('NFC').toLowerCase().trim().replace(/u:|v/g,'ü').replace(/([a-zü]+)([0-5])/g,(_,s,n)=>{
@@ -31,7 +32,7 @@ export function validateBackup(data){
   mistakes[id]={id,streak:Math.floor(m.streak),errors:Math.floor(m.errors),due:m.due,last:m.last,created:m.created,...(['声母','韵母','声调','汉字'].includes(m.reason)?{reason:m.reason}:{})};
  }
  const history=data.history.map(r=>{if(!r||typeof r.key!=='string'||r.key.length>150||typeof r.id!=='string'||r.id.length>100||!Number.isFinite(r.at)||typeof r.correct!=='boolean')throw Error('学习记录格式不正确。');return {key:r.key,id:r.id,at:r.at,correct:r.correct,mode:['choose','type','write','paper'].includes(r.mode)?r.mode:'write'};});
- const settings={rate:[0.75,0.9,1].includes(data.settings?.rate)?data.settings.rate:0.9,mode:['write','paper','type'].includes(data.settings?.mode)?data.settings.mode:'write',count:[6,10,15].includes(data.settings?.count)?data.settings.count:10};
+ const settings={rate:SPEECH_RATES.some(([rate])=>rate===data.settings?.rate)?data.settings.rate:DEFAULT_RATE,mode:['write','paper','type'].includes(data.settings?.mode)?data.settings.mode:'write',count:[6,10,15].includes(data.settings?.count)?data.settings.count:10};
  return {version:1,history,mistakes,settings};
 }
 export const dictationPrompts={

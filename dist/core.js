@@ -1,3 +1,4 @@
+import {validateLiteracy} from './literacy-core.js';
 import {DEFAULT_RATE,SPEECH_RATES} from './audio-settings.js';
 const tones={a:'āáǎà',e:'ēéěè',i:'īíǐì',o:'ōóǒò',u:'ūúǔù',ü:'ǖǘǚǜ'};
 export function normalizePinyin(input){
@@ -33,7 +34,7 @@ export function validateBackup(data){
  }
  const history=data.history.map(r=>{if(!r||typeof r.key!=='string'||r.key.length>150||typeof r.id!=='string'||r.id.length>100||!Number.isFinite(r.at)||typeof r.correct!=='boolean')throw Error('学习记录格式不正确。');return {key:r.key,id:r.id,at:r.at,correct:r.correct,mode:['choose','type','write','paper'].includes(r.mode)?r.mode:'write'};});
  const settings={rate:SPEECH_RATES.some(([rate])=>rate===data.settings?.rate)?data.settings.rate:DEFAULT_RATE,mode:['write','paper','type'].includes(data.settings?.mode)?data.settings.mode:'write',count:[6,10,15].includes(data.settings?.count)?data.settings.count:10};
- return {version:1,history,mistakes,settings};
+ return {version:1,history,mistakes,settings,literacy:validateLiteracy(data.literacy)};
 }
 export const dictationPrompts={
  '他们':'他们。例句：他们是我的同学。请写词语：他们。',

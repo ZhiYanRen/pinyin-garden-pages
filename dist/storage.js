@@ -1,7 +1,8 @@
+import {validateLiteracy,mergeLiteracy} from './literacy-core.js';
 import {validateBackup} from './core.js';
 import {DEFAULT_RATE} from './audio-settings.js';
 export const KEY='pinyin-garden-v1';
-export function fresh(){return {version:1,audioProfile:2,includeSupplements:false,history:[],mistakes:{},settings:{rate:DEFAULT_RATE,mode:'write',count:10},session:null,book:'g2a',unit:1,updated:0};}
+export function fresh(){return {version:1,audioProfile:2,includeSupplements:false,literacy:validateLiteracy(),history:[],mistakes:{},settings:{rate:DEFAULT_RATE,mode:'write',count:10},session:null,book:'g2a',unit:1,updated:0};}
 export function load(){
  try{const raw=localStorage.getItem(KEY);if(!raw)return {state:fresh()};const o=JSON.parse(raw);const clean=validateBackup(o);
  if(o.audioProfile!==2)clean.settings.rate=Math.min(clean.settings.rate,DEFAULT_RATE);
@@ -12,4 +13,4 @@ export function load(){
 }
 export function save(state){try{state.updated=Date.now();localStorage.setItem(KEY,JSON.stringify(state));return true;}catch{return false;}}
 export function mergeBackup(state,data,catalog){const b=validateBackup(data);const history=[...new Map([...state.history,...b.history.filter(r=>catalog.has(r.id))].map(r=>[r.key,r])).values()].sort((a,b)=>a.at-b.at).slice(-5000);
- const mistakes={...state.mistakes};for(const [id,m] of Object.entries(b.mistakes)){if(catalog.has(id)&&(!mistakes[id]||m.last>mistakes[id].last))mistakes[id]=m;}return {...state,history,mistakes};}
+ const mistakes={...state.mistakes};for(const [id,m] of Object.entries(b.mistakes)){if(catalog.has(id)&&(!mistakes[id]||m.last>mistakes[id].last))mistakes[id]=m;}return {...state,history,mistakes,literacy:mergeLiteracy(state.literacy,b.literacy)};}

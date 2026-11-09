@@ -1,9 +1,10 @@
+import {literacyAudio} from '../dist/literacy-data.js';
 import os from 'node:os';import fs from 'node:fs';import path from 'node:path';import crypto from 'node:crypto';import {spawn} from 'node:child_process';
 import {AUDIO_PROFILE} from '../dist/audio-settings.js';
 import {dictationPrompts} from '../dist/core.js';
 import {topics,soundGroups} from '../dist/pinyin-data.js';import {curriculum} from '../dist/curriculum.js';
 const root=path.resolve(import.meta.dirname,'..'),dir=path.join(root,'dist/audio'),tmp=path.join(os.tmpdir(),'pinyin-garden-audio');fs.mkdirSync(dir,{recursive:true});fs.mkdirSync(tmp,{recursive:true});
-const texts=[...new Set([...Object.values(dictationPrompts),'你好，我们一起练习拼音。',...topics.flatMap(t=>t.items.map(i=>i.text)),...soundGroups.flatMap(g=>g.items.map(i=>i.example)),...curriculum.flatMap(b=>b.units.flatMap(u=>u.lessons.flatMap(l=>l.words.map(w=>w.text))))])].filter(Boolean);
+const texts=[...new Set([...literacyAudio,...Object.values(dictationPrompts),'你好，我们一起练习拼音。',...topics.flatMap(t=>t.items.map(i=>i.text)),...soundGroups.flatMap(g=>g.items.map(i=>i.example)),...curriculum.flatMap(b=>b.units.flatMap(u=>u.lessons.flatMap(l=>l.words.map(w=>w.text))))])].filter(Boolean);
 const map=Object.fromEntries(texts.map(t=>[t,`audio/${crypto.createHash('sha256').update(AUDIO_PROFILE+'\0'+t).digest('hex').slice(0,16)}.mp3`]));
 const run=(cmd,args)=>new Promise((resolve,reject)=>{const p=spawn(cmd,args,{stdio:['ignore','ignore','pipe']});let err='';p.stderr.on('data',d=>err+=d);p.on('error',reject);p.on('exit',c=>c===0?resolve():reject(Error(err)));});
 let ix=0,done=0;async function worker(){while(ix<texts.length){const text=texts[ix++],file=path.join(root,'dist',map[text]);if(!fs.existsSync(file)){const aiff=path.join(tmp,path.basename(file)+'.aiff'),encoded=file+'.tmp.mp3';await run('/usr/bin/say',['-v','Tingting','-r','135','-o',aiff,text]);await run('/opt/homebrew/bin/ffmpeg',['-y','-v','error','-i',aiff,'-af','loudnorm=I=-18:TP=-2:LRA=7,adelay=150,apad=pad_dur=0.35','-ac','1','-ar','24000','-codec:a','libmp3lame','-b:a','64k',encoded]);fs.renameSync(encoded,file);fs.unlinkSync(aiff);}done++;if(done%50===0)process.stdout.write(`${done}/${texts.length}\n`);}}

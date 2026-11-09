@@ -1,0 +1,5 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import path from 'node:path';import os from 'node:os';import {execFileSync} from 'node:child_process';
+test('release changes the offline shell version when a nested illustration changes',()=>{const root=fs.mkdtempSync(path.join(os.tmpdir(),'pinyin-release-'));try{
+ fs.mkdirSync(path.join(root,'scripts'));fs.mkdirSync(path.join(root,'dist/literacy'),{recursive:true});fs.copyFileSync(new URL('../scripts/release.mjs',import.meta.url),path.join(root,'scripts/release.mjs'));
+ fs.writeFileSync(path.join(root,'dist/sw.js'),"const SHELL='pinyin-shell-test';");fs.writeFileSync(path.join(root,'dist/literacy/scene.svg'),'<svg>A</svg>');const run=()=>{execFileSync(process.execPath,[path.join(root,'scripts/release.mjs')]);return fs.readFileSync(path.join(root,'dist/sw.js'),'utf8');};const first=run();fs.writeFileSync(path.join(root,'dist/literacy/scene.svg'),'<svg>B</svg>');assert.notEqual(run(),first);
+ }finally{fs.rmSync(root,{recursive:true,force:true});}});

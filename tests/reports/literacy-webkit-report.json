@@ -1,0 +1,101 @@
+{
+  "engine": "webkit",
+  "physicalDevice": false,
+  "reports": [
+    {
+      "width": 1194,
+      "height": 834,
+      "passed": true,
+      "checks": [
+        "five-way navigation",
+        "13 poems",
+        "daily reading mark",
+        "hidden poem answers",
+        "typed next-line and full-poem check",
+        "paper self-check",
+        "six images load",
+        "writing autosave and reload",
+        "24 radical cards",
+        "single grading",
+        "backup includes new records",
+        "no overflow"
+      ]
+    },
+    {
+      "width": 834,
+      "height": 1194,
+      "passed": true,
+      "checks": [
+        "five-way navigation",
+        "13 poems",
+        "daily reading mark",
+        "hidden poem answers",
+        "typed next-line and full-poem check",
+        "paper self-check",
+        "six images load",
+        "writing autosave and reload",
+        "24 radical cards",
+        "single grading",
+        "backup includes new records",
+        "no overflow"
+      ]
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "passed": true,
+      "checks": [
+        "five-way navigation",
+        "13 poems",
+        "daily reading mark",
+        "hidden poem answers",
+        "typed next-line and full-poem check",
+        "paper self-check",
+        "six images load",
+        "writing autosave and reload",
+        "24 radical cards",
+        "single grading",
+        "backup includes new records",
+        "no overflow"
+      ]
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "passed": true,
+      "checks": [
+        "five-way navigation",
+        "13 poems",
+        "daily reading mark",
+        "hidden poem answers",
+        "typed next-line and full-poem check",
+        "paper self-check",
+        "six images load",
+        "writing autosave and reload",
+        "24 radical cards",
+        "single grading",
+        "backup includes new records",
+        "no overflow"
+      ]
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "passed": true,
+      "checks": [
+        "five-way navigation",
+        "13 poems",
+        "daily reading mark",
+        "hidden poem answers",
+        "typed next-line and full-poem check",
+        "paper self-check",
+        "six images load",
+        "writing autosave and reload",
+        "24 radical cards",
+        "single grading",
+        "backup includes new records",
+        "no overflow"
+      ]
+    }
+  ]
+}

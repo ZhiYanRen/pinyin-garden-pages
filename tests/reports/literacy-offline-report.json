@@ -1,0 +1,13 @@
+{
+  "engine": "chromium",
+  "passed": true,
+  "clips": 894,
+  "physicalDevice": false,
+  "checks": [
+    "new modules cached",
+    "new poem audio plays offline",
+    "original SVG loads offline",
+    "writing saves offline"
+  ],
+  "errors": []
+}

@@ -48,3 +48,13 @@
 - npm test共19项通过；npm run build:release通过；git diff --check通过；Premium严格检查零问题。Chrome与WebKit各7组尺寸流程通过，各7组新的听音流程通过。脚本 tests/ipad.browser.mjs 与 tests/listening.browser.mjs；后者关闭service worker以确定性注入音频网络故障，离线另行真实验证。
 - Chrome验证789段新包完整下载、完成后旧包清理、断网新文档重载、真实MP3播放及答题放行，见tests/offline.browser.mjs及对应v2报告。WebKit的setOffline模拟开关重载返回引擎内部错误且保留旧文档，不记作成功；改为下载后停止本机HTTP服务器，确认新文档从缓存加载及真实MP3播放通过，复现脚本tests/offline-server.browser.mjs。两种测试方法明确区分。
 - 以上为桌面Chrome/WebKit和触控模拟，未进行实体iPad、Safari系统软键盘、Apple Pencil或安装独立窗口的真机验收。录音没有新增识别/评分；合成声音不冒充教师示范。
+
+## 语文积累四模块（2026-11-09）
+
+- 新增13首公有领域古诗词、6幅原创SVG看图写话插画、24组常见偏旁。来源与教学边界见LITERACY-SOURCES.md；未将课外内容标为教材必背。
+- 复用五项主导航与现有保存、慢听、备份机制。输入/图片草稿、熟读标记、偏旁记录纳入备份；旧备份兼容，合并不覆盖更新的草稿。
+- 新增单元检查：内容完整、逐字默写核对、空答不正确、输入限制、未知ID拒绝、备份较新记录保留，以及嵌套SVG改变时离线缓存版本更新。npm test共24项通过，正式构建与差异检查通过。
+- Chrome与WebKit各5组新栏目视口流程通过：1194×834、834×1194、390×844、1440×900、844×390。覆盖导航、原文隐藏、补下一句和整首核对、纸上对照、参考写法、草稿刷新恢复、备份导出与导入、偏旁单次计分及横向溢出。报告在tests/reports/literacy-*-report.json。
+- Chrome原有7组布局、输入与手写恢复流程通过；备份导入导致原触发按钮重建时，关闭弹窗可将焦点落到当前主内容区。
+- 声音增加到894段，105段新增诗句/例字均有静态文件；Chrome实际断网后重新加载新模块、播放新诗句MP3、显示SVG与保存写话草稿通过。见tests/literacy-offline.browser.mjs及报告。离线使用前须补全新版声音包。
+- 静态Premium严格检查零问题。上述均为桌面浏览器与触控模拟，未连接实体iPad；系统中文键盘、Apple Pencil及独立窗口仍需真机验证。没有声称作文评分、背诵识别或手写识别。

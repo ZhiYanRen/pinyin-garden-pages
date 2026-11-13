@@ -1,9 +1,9 @@
 {
-  "clips": 894,
+  "clips": 1161,
   "voice": "macOS Tingting zh-CN",
   "profile": "tingting-135-normalized-v2",
   "rate": 135,
   "format": "mono MP3 24kHz 64kbps; normalized -18 LUFS, -2 dBTP; 150ms lead / 350ms tail",
-  "generated": "2026-11-09",
-  "bytes": 10095144
+  "generated": "2026-11-13",
+  "bytes": 16168716
 }

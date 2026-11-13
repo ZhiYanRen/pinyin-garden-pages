@@ -1,7 +1,7 @@
 {
   "engine": "chromium",
   "passed": true,
-  "clips": 894,
+  "clips": 1161,
   "physicalDevice": false,
   "checks": [
     "new modules cached",

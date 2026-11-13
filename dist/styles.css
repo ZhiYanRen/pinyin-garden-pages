@@ -61,3 +61,10 @@ summary:focus-visible{outline:3px solid var(--primary);outline-offset:3px}.liter
 @media(max-width:599px){.literacy-tabs{display:grid;grid-template-columns:1fr 1fr}.literacy-tabs button{min-width:0;padding:8px;font-size:13px;white-space:normal}.poem-line{font-size:20px;padding:12px}.poem-line .icon{flex-shrink:0}.poem-original{font-size:20px}.radical-exercise .option{padding:10px;font-size:38px}.nav button{font-size:11px}.nav .badge{right:5px}.writing-workspace{gap:14px}}
 @media(prefers-reduced-motion:no-preference){.poem-line,.picture-card,.radical-exercise .option{transition:background .15s,transform .15s}.picture-card:active{transform:scale(.99)}}
 @media(hover:hover){.poem-line:hover,.writing-sample summary:hover{background:var(--mint)}.literacy-tabs button:not(.selected):hover{background:var(--background)}}
+
+/* Textbook shelf: tactile fields wrap in reading order on small screens. */
+.curriculum-fields{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.curriculum-fields .field{min-width:0}
+.curriculum-fields select{width:100%;min-height:48px}
+.poem-card .tip{display:block;line-height:1.7;margin-bottom:8px}
+@media(max-width:700px){.curriculum-fields{grid-template-columns:repeat(2,minmax(0,1fr))}}

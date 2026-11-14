@@ -1,20 +1,20 @@
 ---
 version: alpha
-name: "拼音小花园"
+name: "锦铭语文小助手"
 description: "像一本有声音的儿童练习册，让易混拼音慢慢长成小花。"
 colors:
-  primary: "#28614F"
-  ink: "#243E36"
-  muted: "#61756C"
-  background: "#F5F8F3"
+  primary: "#B5480B"
+  ink: "#283246"
+  muted: "#78624F"
+  background: "#FFF8EF"
   surface: "#FFFFFF"
-  mint: "#E4F0D9"
-  peach: "#F9E4D8"
-  lavender: "#EDE9FA"
-  sky: "#E2EDF7"
-  line: "#DDE5DA"
-  danger: "#994D3C"
-  yellow: "#F7D96D"
+  mint: "#FFF0DB"
+  peach: "#FFE4D4"
+  lavender: "#EBEDFF"
+  sky: "#E8F3FF"
+  line: "#EBDCCD"
+  danger: "#AA3C32"
+  yellow: "#FFD176"
 typography:
   sans:
     fontFamily: '"PingFang SC", "Microsoft YaHei", system-ui, sans-serif'
@@ -34,10 +34,10 @@ components:
 ---
 
 ## Overview
-中文版儿童学习工具，服务已会拼读但听写易错的孩子。iPad 横竖屏及手指/Apple Pencil 操作优先。主视觉来自四线三格练习本与植物观察本：明亮纸张、大字、低密度，绿色主操作。标志是由声调小山和叶片构成的嫩芽；进步以真正的答题数量显示，绝不预置假成绩。不采用排行榜、倒计时催促、失败红叉大屏。
+中文版儿童学习工具，服务已会拼读但听写易错的孩子。iPad 横竖屏及手指/Apple Pencil 操作优先。主视觉来自四线三格练习本与植物观察本：明亮纸张、大字、低密度，深果橙主操作。标志是打开的书与知识轨道；进步以真正的答题数量显示，绝不预置假成绩。不采用排行榜、倒计时催促、失败红叉大屏。
 
 ## Colors
-上列颜色为规范值。主绿表示可操作与成功，浅色仅区分练习类别；错误使用文字与柔和陶色，不仅依赖颜色。统一通过 dist/tokens.css 的同名 CSS 变量消费。DESIGN.md 为源，scripts/generate-tokens.mjs 生成色值，禁止在组件复制颜色。
+上列颜色为规范值。深果橙表示主操作，成功同时用文字与勾选反馈，浅色仅区分练习类别；错误使用文字与柔和陶色，不仅依赖颜色。统一通过 dist/tokens.css 的同名 CSS 变量消费。DESIGN.md 为源，scripts/generate-tokens.mjs 生成色值，禁止在组件复制颜色。
 
 ## Typography
 正文采用系统中文字体；拼音和关键数字采用 display，确保完整显示声调与 ü。正文16px、辅助14px、标题28–38px、拼音36–64px；正文行高1.65，不用长段居中。
@@ -67,3 +67,8 @@ components:
 
 ## 教材积累书架（2026-11-13）
 沿用植物练习册视觉，书架卡片显示真实册次、课文/语文园地、单元、页码。原生选择框统一管理年级、册次、内容、单元；宽屏四列，手机两列，控件48px，间距16px。默认二上全册；课外积累是独立年级选项。当前筛选决定今日推荐、卡片与熟读分母。筛选变化即时反馈并保留焦点，复用现有按压和减少动态效果规则。
+
+## 果橙科技主题（2026-11-14）
+品牌统一为锦铭语文小助手。主色深果橙#B5480B保证白字对比，亮果橙#FF8A24用于图标与装饰；冰蓝用于知识轨道和少量辅助色。沿用系统中文字体，标题略紧凑，正文不变。重点学习面板用细网格和短轨道线形成科技感，正文卡片保持白底；不加入假AI状态、闪烁扫描或循环动画。按钮按压及卡片边缘高亮使用轻量CSS，遵循既有减少动态效果规则。
+
+品牌源文件dist/icon.svg是原创书本与轨道图形，dist/icon-192.png用于apple-touch-icon及manifest，dist/icon-512.png用于manifest大图与maskable；图形在中心安全区域内。应用导航使用同一SVG。scripts/generate-icons.mjs从SVG生成PNG，不依赖生产运行服务。图标更新随shell内容哈希离线更新。保留原网址、存储键及备份结构，旧学习记录继续可用。

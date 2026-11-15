@@ -1,0 +1,13 @@
+{
+  "engine": "chromium",
+  "physicalDevice": false,
+  "passed": true,
+  "checks": [
+    "settings save without submit",
+    "IME draft save",
+    "safe automatic update",
+    "route and draft restore",
+    "save failure delays reload and retries",
+    "failed install retains complete release"
+  ]
+}

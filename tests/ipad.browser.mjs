@@ -27,7 +27,7 @@ try {
   const canvas=page.locator('#writing');const box=await canvas.boundingBox();
   assert((await page.locator('.canvas-wrap').boundingBox()).height>=240,'writing area provides room for touch');
   await canvas.scrollIntoViewIfNeeded();const rect=await canvas.boundingBox();
-  await page.mouse.move(rect.x+20,rect.y+20);await page.mouse.down();await page.mouse.move(rect.x+80,rect.y+80,{steps:5});await page.mouse.up();
+  await page.mouse.move(rect.x+20,rect.y+20);await page.mouse.down();await page.mouse.move(rect.x+80,rect.y+80,{steps:5});await page.waitForTimeout(200);assert(await page.evaluate(()=>JSON.parse(localStorage.getItem('pinyin-garden-v1')).session.strokes[0].length>1),'in-progress stroke autosaves before lift');await page.mouse.up();
   const strokes=()=>page.evaluate(()=>JSON.parse(localStorage.getItem('pinyin-garden-v1')).session.strokes);
   const saved=await strokes();assert(saved[0].length>1);
   await page.setViewportSize({width:height,height:width});await noOverflow();assert.deepEqual(await strokes(),saved,'rotation preserves ink');

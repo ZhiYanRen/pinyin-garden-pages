@@ -1,4 +1,4 @@
-# 锦铭语文小助手
+# 语文小帮手
 
 正式网站：https://zhiyanren.github.io/pinyin-garden-pages/
 
@@ -79,7 +79,7 @@
 
 原作、原创图片及教学边界见 [LITERACY-SOURCES.md](LITERACY-SOURCES.md)。开发者可通过 `node scripts/generate-literacy-art.mjs` 重建插画；`tests/literacy.browser.mjs` 验证四个栏目的多尺寸流程，环境变量与已有浏览器脚本相同。
 
-当前品牌为「锦铭语文小助手」，采用果橙色与轻量科技风。原网址和学习记录继续可用。应用图标源文件为dist/icon.svg；PNG可通过 `SHARP_MODULE=/path/to/sharp/dist/index.mjs node scripts/generate-icons.mjs` 在本机重建，sharp仅用于开发生成。
+当前品牌为「语文小帮手」，采用果绿色与轻量科技风。原网址和学习记录继续可用。应用图标源文件为dist/icon.svg；PNG可通过 `SHARP_MODULE=/path/to/sharp/dist/index.mjs node scripts/generate-icons.mjs` 在本机重建，sharp仅用于开发生成。
 
 ## 自动保存和版本更新
 

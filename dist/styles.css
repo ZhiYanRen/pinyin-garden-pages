@@ -69,7 +69,7 @@ summary:focus-visible{outline:3px solid var(--primary);outline-offset:3px}.liter
 .poem-card .tip{display:block;line-height:1.7;margin-bottom:8px}
 @media(max-width:700px){.curriculum-fields{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
-/* Fruit-orange learning console; decoration stays out of reading surfaces. */
+/* Fruit-green learning console; decoration stays out of reading surfaces. */
 .brand{padding-inline:0;gap:8px}.brand strong{font-size:16px;letter-spacing:.1px}.brand small{letter-spacing:1px}.brand img{flex-shrink:0}
 .topbar>.row{min-width:0;flex-wrap:wrap;gap:7px}.topbar>.row>img{width:28px;height:28px;flex-shrink:0}
 .study-launch{background-color:var(--mint);background-image:linear-gradient(90deg,color-mix(in srgb,var(--primary) 5%,transparent) 1px,transparent 1px),linear-gradient(color-mix(in srgb,var(--primary) 5%,transparent) 1px,transparent 1px);background-size:24px 24px;position:relative;isolation:isolate;overflow:hidden}

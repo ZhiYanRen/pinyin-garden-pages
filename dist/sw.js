@@ -1,4 +1,4 @@
-const SHELL='pinyin-shell-59c994182119',AUDIO='pinyin-audio-v2';
+const SHELL='pinyin-shell-d3532a385aaf',AUDIO='pinyin-audio-v2';
 const FILES=['./','./index.html','./styles.css','./tokens.css','./app.js','./updates.js','./core.js','./learning.js','./literacy-data.js','./literacy-curriculum.js','./literacy-core.js','./literacy-ui.js','./literacy/umbrella.svg','./literacy/tree.svg','./literacy/kite.svg','./literacy/clean.svg','./literacy/cat.svg','./literacy/books.svg','./audio-settings.js','./storage.js','./media.js','./drawing.js','./pinyin-data.js','./curriculum.js','./audio-map.js','./icon.svg','./icon-192.png','./icon-512.png','./manifest.webmanifest'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(SHELL).then(c=>c.addAll(FILES)).then(()=>self.skipWaiting())));
 self.addEventListener('message',event=>{if(event.data?.type==='SKIP_WAITING')event.waitUntil(self.skipWaiting());});

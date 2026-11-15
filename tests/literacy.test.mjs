@@ -17,7 +17,7 @@ test('new learning records validate limits and merge without losing newer drafts
  const key=draftKey('picture','umbrella');const a=validateLiteracy({drafts:{[key]:{text:'我的草稿',updated:20}},learned:{moon:10},radicals:{water:{attempts:2,correct:1,updated:20}}});
  const b=validateLiteracy({drafts:{[key]:{text:'旧备份',updated:10}},learned:{snow:15}});
  const m=mergeLiteracy(a,b);assert.equal(m.drafts[key].text,'我的草稿');assert.equal(m.learned.snow,15);assert.equal(m.learned.moon,10);
- assert.deepEqual(validateLiteracy(undefined),{drafts:{},learned:{},radicals:{}});
+ assert.deepEqual(validateLiteracy(undefined),{drafts:{},learned:{},radicals:{},mistakes:{}});
  assert.throws(()=>validateLiteracy({drafts:{[key]:{text:'x'.repeat(1001),updated:1}}}));assert.throws(()=>validateLiteracy({radicals:{water:{attempts:1,correct:2,updated:1}}}));assert.throws(()=>validateLiteracy({drafts:{unknown:{text:'x',updated:1}}}));
 });
 test('existing backup flow includes new records and keeps newer local writing',async()=>{
@@ -43,4 +43,14 @@ test('expanded literacy backups support all known drafts, but no reference-only 
  const drafts=Object.fromEntries(poems.filter(p=>!p.referenceOnly).flatMap(p=>['next','full'].map(mode=>[draftKey('poem',p.id,mode),{text:'练习',updated:1}])));
  assert(Object.keys(drafts).length>100);assert.deepEqual(validateLiteracy({drafts}).drafts,drafts);
  assert.throws(()=>validateLiteracy({drafts:{'poem:mao-plum:full':{text:'test',updated:1}}}));
+});
+
+test('all assessed literacy mistakes survive validation and backup merge',async()=>{
+ const {recordLiteracyAnswer}=await import('../dist/literacy-core.js');const r=validateLiteracy();
+ recordLiteracyAnswer(r,'poem','moon','full','写错了',false,10);recordLiteracyAnswer(r,'poem','moon','full','又写错',false,20);
+ assert.equal(r.mistakes['poem:moon:full'].errors,2);recordLiteracyAnswer(r,'radical','water','quiz','土',false,20);
+ assert.equal(Object.keys(validateLiteracy(r).mistakes).length,2);
+ const merged=mergeLiteracy(undefined,r);recordLiteracyAnswer(merged,'poem','moon','full','正确',true,30);
+ assert(merged.mistakes['poem:moon:full'].resolved);assert.equal(merged.mistakes['poem:moon:full'].errors,2);
+ assert.throws(()=>validateLiteracy({mistakes:{bad:{}}}));
 });
